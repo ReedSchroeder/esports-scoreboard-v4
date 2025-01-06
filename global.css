@@ -1,0 +1,7 @@
+.skew-right {
+    transform: skewX(-30deg)
+  }
+  
+  .skew-left {
+    transform: skewX(30deg)
+  }

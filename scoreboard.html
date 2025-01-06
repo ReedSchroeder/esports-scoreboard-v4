@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="global.css">
+        <script src="tailwind.16"></script>
+
+        <script type="text/javascript">
+            window.onload = () => {
+                document.getElementById("nameL").textContent = "test"
+                document.getElementById("scoreL").textContent = "0"
+                document.getElementById("logoL").setAttribute("src", "filler")
+                let bgLclasses = document.getElementById("bgL").classList
+                bgLclasses += " bg-red-700"
+                document.getElementById("bgL").classList = bgLclasses
+            }
+        </script>
+    </head>
+    <body>
+        <div class="w-[1920px] h-[1080px] overflow-hidden">
+            <!--left scoreboard-->
+            <div class="inline-block">
+                <!--bg-->
+                <div class="absolute w-[600px] h-16 flex flex-nowrap -left-5 skew-right" id="bgL">
+                    <div class="flex-auto h-full skew-left inline-block px-6 flex">
+                        <!--logo-->
+                        <div class="inline-block h-full w-16 flex-none">
+                            <img alt="team logo" class="max-h-full self-center m-auto" id="logoL">
+                        </div>
+                        <div className="inline-block h-full w-2 flex-none"></div>
+                        <!--name--><!--note: leading needs to match the height of the divs-->
+                        <div class="inline-block h-full w-full text-5xl leading-[64px] text-center flex-auto" id="nameL">
+
+                        </div>
+                        <div className="inline-block h-full w-2 flex-none"></div>
+                        <!--score--><!--note: leading needs to match the height of the divs-->
+                        <div class="inline-block h-full w-16 text-5xl text-center leading-[64px] flex-none bg-neutral-400" id="scoreL">
+
+                        </div>
+                    </div>
+                    <!--slice-->
+                    <div class="basis-6 flex-none h-full bg-black inline-block"></div>
+                </div>
+            </div>
+            <!--right scoreboard-->
+            <div class="inline-block">
+                <!--bg-->
+                <div class="absolute w-[600px] h-16 bg-red-700 flex flex-nowrap -right-5 skew-left" id="bgR">
+                    <!--slice-->
+                    <div class="basis-6 flex-none h-full bg-black inline-block"></div>
+                    <div class="flex-auto h-full skew-right inline-block px-6 flex">
+                        <!--score--><!--note: leading needs to match the height of the divs-->
+                        <div class="inline-block h-full w-16 text-5xl text-center leading-[64px] flex-none bg-neutral-400" id="scoreR">
+
+                        </div>
+                        <div className="inline-block h-full w-2 flex-none"></div>
+                        <!--name--><!--note: leading needs to match the height of the divs-->
+                        <div class="inline-block h-full w-full text-5xl leading-[64px] text-center flex-auto" id="nameR">
+
+                        </div>
+                        <div className="inline-block h-full w-2 flex-none"></div>
+                        <!--logo-->
+                        <div class="inline-block h-full w-16 flex-none">
+                            <img alt="team logo" class="max-h-full self-center m-auto" id="logoR">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
