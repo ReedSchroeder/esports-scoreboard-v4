@@ -7,7 +7,11 @@
 
         <script type="text/javascript">
             window.onload = () => {
-                document.getElementById("nameL").textContent = "test"
+		        fetch("http://localhost:8001/Scoreboard-Overlay/team1Name")
+			        .then(e => e.text())
+			        .then(e => e.slice(e.search('<span id="text">') + 16, e.search('</span>')))
+			        .then(e => document.getElementById("nameL").textContent = e)
+                
                 document.getElementById("scoreL").textContent = "0"
                 document.getElementById("logoL").setAttribute("src", "filler")
                 let bgLclasses = document.getElementById("bgL").classList
