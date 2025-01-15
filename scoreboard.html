@@ -6,17 +6,46 @@
         <script src="tailwind.16"></script>
 
         <script type="text/javascript">
+            async function getData(endpoint) {
+                return fetch(endpoint)
+                    .then(e => e.text())
+                    .then(e => e.slice(e.search('<span id="text">') + 16, e.search('</span>')))
+            }
+
             window.onload = () => {
-		        fetch("http://localhost:8001/Scoreboard-Overlay/team1Name")
-			        .then(e => e.text())
-			        .then(e => e.slice(e.search('<span id="text">') + 16, e.search('</span>')))
-			        .then(e => document.getElementById("nameL").textContent = e)
+                getData("http://localhost:8001/Scoreboard-Overlay/team1Name")
+                    .then(e => document.getElementById("nameL").textContent = e)
                 
-                document.getElementById("scoreL").textContent = "0"
-                document.getElementById("logoL").setAttribute("src", "filler")
-                let bgLclasses = document.getElementById("bgL").classList
-                bgLclasses += " bg-red-700"
-                document.getElementById("bgL").classList = bgLclasses
+                getData("http://localhost:8001/Scoreboard-Overlay/team1Score")
+                    .then(e => document.getElementById("scoreL").textContent = e)
+
+                getData("http://localhost:8001/Scoreboard-Overlay/team1Logo")
+                    .then(e => document.getElementById("logoL").setAttribute("src", e))
+
+                getData("http://localhost:8001/Scoreboard-Overlay/team1Color")
+                    .then(e => {
+                        let bg = document.getElementById("bgL")
+                        let bgLclasses = bg.classList
+                        bgLclasses += ` bg-[${e}]`
+                        bg.classList = bgLclasses
+                    })
+
+                getData("http://localhost:8001/Scoreboard-Overlay/team2Name")
+                    .then(e => document.getElementById("nameR").textContent = e)
+                
+                getData("http://localhost:8001/Scoreboard-Overlay/team2Score")
+                    .then(e => document.getElementById("scoreR").textContent = e)
+
+                getData("http://localhost:8001/Scoreboard-Overlay/team2Logo")
+                    .then(e => document.getElementById("logoR").setAttribute("src", e))
+
+                getData("http://localhost:8001/Scoreboard-Overlay/team2Color")
+                    .then(e => {
+                        let bg = document.getElementById("bgR")
+                        let bgLclasses = bg.classList
+                        bgLclasses += ` bg-[${e}]`
+                        bg.classList = bgLclasses
+                    })
             }
         </script>
     </head>
@@ -28,13 +57,13 @@
                 <div class="absolute w-[600px] h-16 flex flex-nowrap -left-5 skew-right" id="bgL">
                     <div class="flex-auto h-full skew-left inline-block px-6 flex">
                         <!--logo-->
-                        <div class="inline-block h-full w-16 flex-none">
+                        <div class="inline-block h-full w-16 flex-none flex content-center">
                             <img alt="team logo" class="max-h-full self-center m-auto" id="logoL">
                         </div>
-                        <div className="inline-block h-full w-2 flex-none"></div>
+                        <div className="inline-block h-full w-2 flex-none "></div>
                         <!--name--><!--note: leading needs to match the height of the divs-->
-                        <div class="inline-block h-full w-full text-5xl leading-[64px] text-center flex-auto" id="nameL">
-
+                        <div class="inline-block h-full w-full text-5xl leading-[64px] text-center flex-auto text-white" id="nameL">
+				
                         </div>
                         <div className="inline-block h-full w-2 flex-none"></div>
                         <!--score--><!--note: leading needs to match the height of the divs-->
@@ -59,12 +88,12 @@
                         </div>
                         <div className="inline-block h-full w-2 flex-none"></div>
                         <!--name--><!--note: leading needs to match the height of the divs-->
-                        <div class="inline-block h-full w-full text-5xl leading-[64px] text-center flex-auto" id="nameR">
+                        <div class="inline-block h-full w-full text-5xl leading-[64px] text-center flex-auto text-white" id="nameR">
 
                         </div>
                         <div className="inline-block h-full w-2 flex-none"></div>
                         <!--logo-->
-                        <div class="inline-block h-full w-16 flex-none">
+                        <div class="inline-block h-full w-16 flex-none flex content-center">
                             <img alt="team logo" class="max-h-full self-center m-auto" id="logoR">
                         </div>
                     </div>
