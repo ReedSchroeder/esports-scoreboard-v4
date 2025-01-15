@@ -1,7 +1,36 @@
 .skew-right {
-    transform: skewX(-30deg)
-  }
+  transform: skewX(-30deg)
+}
   
-  .skew-left {
-    transform: skewX(30deg)
-  }
+.skew-left {
+  transform: skewX(30deg)
+}
+
+@keyframes move-left {
+  from {right: -650px;}
+  to {right: -20px;}
+}
+
+@keyframes move-right {
+  from {left: -650px;}
+  to {left: -20px;}
+}
+
+@keyframes fade-in {
+  from {opacity: 0%;}
+  to {opacity: 100%;}
+}
+
+#bgR {
+  animation: move-left .75s;
+  animation-delay: 1.85s;
+  animation-fill-mode: backwards;
+  animation-timing-function: cubic-bezier(.32,.98,.2,1);
+}
+
+#bgL {
+  animation: move-right .75s;
+  animation-delay: 1.75s;
+  animation-fill-mode: backwards;
+  animation-timing-function: cubic-bezier(.32,.98,.2,1);
+}
